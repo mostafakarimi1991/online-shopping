@@ -12,27 +12,31 @@ public class pageController {
 	@RequestMapping(value= {"/","/home","/index"})
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("greeting","Wellcome to spring Web MVC");
+		mv.addObject("title","Home");
+		mv.addObject("userClickHome",true);
+		mv.addObject("userClickAbout",false);
+		mv.addObject("userClickContact",false);
 		return mv;
 	}
 	
-	//*This is for test*//
-	@RequestMapping(value="/test")
-	public ModelAndView testParam(@RequestParam(value="greeting", required=false)String greeting) {
-		if(greeting == null)
-			greeting="Hello There";
+	@RequestMapping(value= {"/about"})
+	public ModelAndView about() {
 		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("greeting",greeting);
-		 return mv;
+		mv.addObject("title","About Us");
+		mv.addObject("userClickHome",false);
+		mv.addObject("userClickAbout",true);
+		mv.addObject("userClickContact",false);
+		return mv;
 	}
 	
-	//*This is for test*//	
-	@RequestMapping(value="/test/{greeting}")
-	public ModelAndView testPath(@PathVariable("greeting")String greeting) {
-		if(greeting == null)
-			greeting="Hello There";
+	@RequestMapping(value= {"/contact"})
+	public ModelAndView contact() {
 		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("greeting",greeting);
-		 return mv;
+		mv.addObject("title","Contact Us");
+		mv.addObject("userClickHome",false);
+		mv.addObject("userClickAbout",false);
+		mv.addObject("userClickContact",true);
+		return mv;
 	}
+
 }
